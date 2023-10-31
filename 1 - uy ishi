@@ -1,0 +1,31 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton
+
+class MyMainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("My Project")
+        self.setGeometry(100, 100, 800, 600)
+
+        self.create_widgets()
+
+    def create_widgets(self):
+        for i in range(1, 11):
+            oyna = QLabel(self)
+            oyna.setGeometry(50, 50, 200, 50)
+            oyna.move(50 * i, 50 * i)
+
+            button = QPushButton(f"Button {i}", self)
+            button.setGeometry(100, 100, 100, 50)
+            button.move(100 * i, 100 * i)
+            button.clicked.connect(self.button_clicked)
+
+    def button_clicked(self):
+        print("Bosildi")
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MyMainWindow()
+    window.show()
+    sys.exit(app.exec_())
